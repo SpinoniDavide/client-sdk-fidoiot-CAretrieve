@@ -900,6 +900,15 @@ int32_t fdo_con_send_recv_message(uint32_t protocol_version,
 	}
 #endif
 
+	if defined(TLS)
+		curlCode = curl_easy_setopt(curl, CURLOPT_CAPATH, (char *)SSL_CERT);
+		if (curlCode != CURLE_OK) {
+			LOG(LOG_ERROR, "CURL_ERROR: Unable to find CA cert path.\n");
+			goto err;
+		}
+	}
+	endif
+
 	curlCode = curl_easy_setopt(curl, CURLOPT_URL, msg_header->data);
 	if (curlCode != CURLE_OK) {
 		LOG(LOG_ERROR, "CURL_ERROR: Unable to pass url.\n");
