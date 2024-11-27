@@ -885,7 +885,7 @@ int32_t fdo_con_send_recv_message(uint32_t protocol_version,
 		goto err;
 	}
 
-if defined(MTLS)
+#if defined(MTLS)
 	curlCode = curl_easy_setopt(curl, CURLOPT_SSLCERT, (char *)SSL_CERT);
 	if (curlCode != CURLE_OK) {
 		LOG(LOG_ERROR, "CURL_ERROR: Unable to select client "
@@ -898,7 +898,7 @@ if defined(MTLS)
 		LOG(LOG_ERROR, "CURL_ERROR: Unable to select client key.\n");
 		goto err;
 	}
-endif
+#endif
 
 	if (tls)
 		curlCode = curl_easy_setopt(curl, CURLOPT_CAPATH, (char *)SSL_CERT);
