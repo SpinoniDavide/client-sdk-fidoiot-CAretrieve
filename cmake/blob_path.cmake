@@ -35,7 +35,6 @@ if(TARGET_OS MATCHES linux)
     if (${CA} MATCHES true)
     client_sdk_compile_definitions(
       -DSSL_CERT=\"${BLOB_PATH}/certs/ca-cert.pem\"
-      
     )
     endif()
 
